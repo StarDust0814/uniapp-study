@@ -7,6 +7,9 @@
 			<swiper-item>444</swiper-item>
 		</swiper>
 	</view>
+	<view><image src="../../static/logo.png" class='pic1' mode='aspectFill'></image></view>
+	<view>------</view>
+	<navigator url='/pages/index/index' open-type="reLaunch">跳转</navigator>
 </template>
 
 <script setup>
@@ -28,5 +31,9 @@ swiper{
 	swiper-item:nth-child(2n){
 		background: orange;
 	}
+}
+.pic1{
+	width: 200px;
+	height: 200px;
 }
 </style>
