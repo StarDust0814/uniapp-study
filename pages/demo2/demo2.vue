@@ -20,6 +20,9 @@
 	<view>-----</view>
 	<!--事件绑定 v-on-->
 	<view class="boxClick" @click="onClick"></view>
+	<!--v-for渲染-->
+	<view class="box" v-for="(item, index) in 10">box模块-{{ index }}</view>
+	<view v-for="(item, index) in list" :key="item.id">{{ item.id }}--{{ item.name }}--{{ item.age }}</view>
 </template>
 
 <script setup>
@@ -42,6 +45,11 @@ const picurl = ref('../../static/logo.png');
 function onClick() {
 	isActive.value = !isActive.value;
 }
+const list = ref([
+	{ id: 1, name: 'frank', age: 18 },
+	{ id: 2, name: 'frank2', age: 19 },
+	{ id: 3, name: 'frank3', age: 20 }
+]);
 </script>
 
 <style lang="scss">

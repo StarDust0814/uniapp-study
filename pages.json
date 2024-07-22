@@ -26,6 +26,20 @@
 			{
 				"navigationBarTitleText" : "demo3"
 			}
+		},
+		{
+			"path" : "pages/cart/cart",
+			"style" : 
+			{
+				"navigationBarTitleText" : "cart"
+			}
+		},
+		{
+			"path" : "pages/demo4/demo4",
+			"style" : 
+			{
+				"navigationBarTitleText" : "demo4"
+			}
 		}
 	],
 	"globalStyle": {
