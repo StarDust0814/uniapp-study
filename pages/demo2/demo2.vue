@@ -23,13 +23,17 @@
 	<!--v-for渲染-->
 	<view class="box" v-for="(item, index) in 10">box模块-{{ index }}</view>
 	<view v-for="(item, index) in list" :key="item.id">{{ item.id }}--{{ item.name }}--{{ item.age }}</view>
+	<view>-----</view>
+	<input type="text" placeholder="请输入名" v-model="firstName" />
+	<input type="text" placeholder="请输入姓" v-model="lastName" />
+	{{ fullName }}
 </template>
 
 <script setup>
 // vue使用
 const a = 5,
 	b = 3;
-import { ref } from 'vue';
+import { ref, computed, watch } from 'vue';
 // 将一个字面量包装成一个对象
 let num2 = ref(10);
 console.log(num2.value);
@@ -50,6 +54,26 @@ const list = ref([
 	{ id: 2, name: 'frank2', age: 19 },
 	{ id: 3, name: 'frank3', age: 20 }
 ]);
+// 计算属性，它和方法的区别在于，计算属性具有缓存性，而方法每次调用都会执行
+const firstName = ref('');
+const lastName = ref('');
+// 注意计算属性使用ref来做后续逻辑处理的时候，一定要用.value来取值，它和template中的不一样
+const fullName = computed(() => firstName.value + '-' + lastName.value);
+// 监听属性并附带一些副作用
+watch(firstName, (newValue, oldValue) => {
+	console.log(newValue, oldValue);
+});
+const person = ref({
+	name: 'frank',
+	age: 18
+});
+// watch如果监听的是一个对象，那监听的第一个参数要写成箭头函数来指定监听对象的属性
+watch(
+	() => person.value.name,
+	(newValue, oldValue) => {
+		console.log(newValue, oldValue);
+	}
+);
 </script>
 
 <style lang="scss">
@@ -65,5 +89,11 @@ const list = ref([
 	width: 200px;
 	height: 200px;
 	background: green;
+}
+input {
+	border: 1px solid #ccc;
+	height: 40px;
+	padding: 0 10px;
+	margin: 10px 0;
 }
 </style>
