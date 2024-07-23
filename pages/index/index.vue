@@ -47,6 +47,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import { onHide, onShow } from '@dcloudio/uni-app';
 let emitRandom = ref(0);
 const onAdd = function (e) {
 	console.log(e);
@@ -65,6 +66,13 @@ onMounted(() => {
 const update = function () {
 	child.value.updateCount();
 };
+// 页面生命周期
+onHide(() => {
+	console.log('触发onHide');
+});
+onShow(() => {
+	console.log('触发onShow');
+});
 </script>
 
 <style lang="scss">
