@@ -1,8 +1,12 @@
 <template>
 	<!--组件中定义好的参数名称传递参数-->
+	<!--子传父，需要通过emit传递的函数名称和接收参数-->
 	<UserInfo username="frank"></UserInfo>
-	<UserInfo username="frank123"></UserInfo>
-	<UserInfo></UserInfo>
+	<UserInfo username="frank123" @add="onAdd" @change="onChange"></UserInfo>
+	<UserInfo @add="onAdd" @change="onChange"></UserInfo>
+	<view>
+		{{ emitRandom }}
+	</view>
 	<view class="box" hover-class="boxHover">
 		<view class="inner" hover-class="innerHover" hover-stop-propagation>内部元素</view>
 	</view>
@@ -37,7 +41,18 @@
 	</scroll-view>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from 'vue';
+let emitRandom = ref(0);
+const onAdd = function (e) {
+	console.log(e);
+};
+
+function onChange(e) {
+	console.log(e);
+	emitRandom.value = e;
+}
+</script>
 
 <style lang="scss">
 .box {
