@@ -4,6 +4,10 @@
 	<UserInfo username="frank"></UserInfo>
 	<UserInfo username="frank123" @add="onAdd" @change="onChange"></UserInfo>
 	<UserInfo @add="onAdd" @change="onChange"></UserInfo>
+	<!--通过defineExpose获取属性-->
+	<demo-child ref="child"></demo-child>
+	<button @click="update">defineExpose更新</button>
+	<view>{{ child }}</view>
 	<view>
 		{{ emitRandom }}
 	</view>
@@ -42,7 +46,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 let emitRandom = ref(0);
 const onAdd = function (e) {
 	console.log(e);
@@ -52,6 +56,15 @@ function onChange(e) {
 	console.log(e);
 	emitRandom.value = e;
 }
+// 注意这里创建的对象名称要和引入的组件ref属性保持一致
+const child = ref(null);
+onMounted(() => {
+	console.log(child.value);
+});
+// 这个调用可以不用结合生命周期函数，因为能触发click事件一定是DOM已经渲染完成后
+const update = function () {
+	child.value.updateCount();
+};
 </script>
 
 <style lang="scss">
