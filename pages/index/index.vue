@@ -56,6 +56,9 @@ uni.showToast({
 	title: 'test toast'
 });
 
+// 设置本地缓存（支持同步和异步）
+uni.setStorageSync('key', 'value');
+
 function onChange(e) {
 	console.log(e);
 	emitRandom.value = e;
