@@ -52,6 +52,9 @@ let emitRandom = ref(0);
 const onAdd = function (e) {
 	console.log(e);
 };
+uni.showToast({
+	title: 'test toast'
+});
 
 function onChange(e) {
 	console.log(e);

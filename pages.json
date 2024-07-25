@@ -7,46 +7,54 @@
 			}
 		},
 		{
-			"path" : "pages/demo1/demo1",
-			"style" : 
-			{
-				"navigationBarTitleText" : "demo"
+			"path": "pages/demo1/demo1",
+			"style": {
+				"navigationBarTitleText": "demo"
 			}
 		},
 		{
-			"path" : "pages/demo2/demo2",
-			"style" : 
-			{
-				"navigationBarTitleText" : "demo2"
+			"path": "pages/demo2/demo2",
+			"style": {
+				"navigationBarTitleText": "demo2"
 			}
 		},
 		{
-			"path" : "pages/demo3/demo3",
-			"style" : 
-			{
-				"navigationBarTitleText" : "demo3"
+			"path": "pages/demo3/demo3",
+			"style": {
+				"navigationBarTitleText": "demo3"
 			}
 		},
 		{
-			"path" : "pages/cart/cart",
-			"style" : 
-			{
-				"navigationBarTitleText" : "cart"
+			"path": "pages/cart/cart",
+			"style": {
+				"navigationBarTitleText": "cart"
 			}
 		},
 		{
-			"path" : "pages/demo4/demo4",
-			"style" : 
-			{
-				"navigationBarTitleText" : "demo4"
+			"path": "pages/demo4/demo4",
+			"style": {
+				"navigationBarTitleText": "demo4"
 			}
 		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"navigationBarBackgroundColor": "#00ff00",
+		"backgroundColor": "#F8F8F8",
+		"enablePullDownRefresh": true
+	},
+	// 底部导航栏配置
+	"tabBar": {
+		"list": [{
+				"pagePath": "pages/index/index",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/cart/cart",
+				"text": "购物车"
+			}
+		]
 	},
 	"uniIdRouter": {}
 }
