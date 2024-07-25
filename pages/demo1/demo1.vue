@@ -12,6 +12,8 @@
 	<navigator url="/pages/index/index" open-type="reLaunch">跳转</navigator>
 	<view>------</view>
 	<button @click="onClick">测试showModel</button>
+	<view>------</view>
+	<button @click="onSelect">测试showActionSheet</button>
 </template>
 
 <script setup>
@@ -25,6 +27,19 @@ function onClick() {
 				uni.showToast({
 					title: '删除成功'
 				});
+		}
+	});
+}
+// 要获取到actionsheet的变量内容，需要用一个数组保存，因为sheet选中后只会保留index
+let selectedArr = ['高中', '大专', '本科', '研究生'];
+function onSelect() {
+	uni.showActionSheet({
+		title: '请选择',
+		itemList: selectedArr,
+		success: (res) => {
+			uni.showToast({
+				title: selectedArr[res.tapIndex]
+			});
 		}
 	});
 }
