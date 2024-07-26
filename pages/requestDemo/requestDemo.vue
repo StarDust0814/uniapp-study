@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<view class="menu">
-			<uni-segmented-control :current="1" :values="[11, 22, 33]" @clickItem="onClickItem" styleType="button" activeColor="#2B9939"></uni-segmented-control>
+			<uni-segmented-control :current="0" :values="values" @clickItem="onClickItem" styleType="button" activeColor="#2B9939"></uni-segmented-control>
 			<view class="layout">
 				<view class="box" v-for="(item, index) in pets" :key="item._id">
 					<view class="pic">
@@ -23,6 +23,19 @@
 </template>
 
 <script setup>
+// 顶部栏逻辑
+const current = ref(0);
+const classify = [
+	{ key: 'all', value: '全部' },
+	{ key: 'dog', value: '狗狗' },
+	{ key: 'cat', value: '猫猫' }
+];
+const values = computed(() => classify.map((item) => item.value));
+const onClickItem = (e) => {
+	current.value = e.currentIndex;
+	pets.value = [];
+	network();
+};
 const pets = ref([]);
 // URL附加的参数可以填在 data字段
 function network() {
@@ -30,7 +43,8 @@ function network() {
 	uni.request({
 		url: 'https://tea.qingnian8.com/tools/petShow',
 		data: {
-			size: 10
+			size: 10,
+			type: classify[current.value].key
 		},
 		header: {
 			'access-key': '500632'
@@ -69,6 +83,7 @@ onReachBottom(() => {
 onPullDownRefresh(() => {
 	// 重新渲染，清空原本的数据
 	pets.value = [];
+	current.value = 0;
 	network();
 });
 
