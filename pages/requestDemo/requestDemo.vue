@@ -1,9 +1,9 @@
 <template>
 	<view class="container">
 		<view class="layout">
-			<view class="box" v-for="item in pets" :key="item._id">
+			<view class="box" v-for="(item, index) in pets" :key="item._id">
 				<view class="pic">
-					<image :src="item.url" mode="widthFix"></image>
+					<image lazy-load :src="item.url" mode="widthFix" @click="onPreview(index)"></image>
 				</view>
 				<view class="text">{{ item.content }}</view>
 				<view class="author">—— {{ item.author }}</view>
@@ -20,6 +20,9 @@ function network() {
 		url: 'https://tea.qingnian8.com/tools/petShow',
 		data: {
 			size: 10
+		},
+		header: {
+			'access-key': '500632'
 		}
 	}).then((res) => {
 		console.log(res);
@@ -27,6 +30,16 @@ function network() {
 	});
 }
 network();
+
+// 预览图片
+function onPreview(index) {
+	// 将数组中每个元素的某个属性单独抽离出来组成一个新数组
+	let urls = pets.value.map((item) => item.url);
+	uni.previewImage({
+		urls,
+		current: index
+	});
+}
 </script>
 
 <style lang="scss" scoped>
