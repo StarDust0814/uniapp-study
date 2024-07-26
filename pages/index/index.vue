@@ -1,4 +1,5 @@
 <template>
+	<navigator url="/pages/requestDemo/requestDemo">跳转到requestDemo</navigator>
 	<!--组件中定义好的参数名称传递参数-->
 	<!--子传父，需要通过emit传递的函数名称和接收参数-->
 	<UserInfo username="frank"></UserInfo>

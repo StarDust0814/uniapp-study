@@ -37,10 +37,15 @@
 			}
 		},
 		{
-			"path" : "pages/demo5/demo5",
-			"style" : 
-			{
-				"navigationBarTitleText" : "demo5"
+			"path": "pages/demo5/demo5",
+			"style": {
+				"navigationBarTitleText": "demo5"
+			}
+		},
+		{
+			"path": "pages/requestDemo/requestDemo",
+			"style": {
+				"navigationBarTitleText": "requestDemo"
 			}
 		}
 	],

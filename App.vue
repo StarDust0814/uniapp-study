@@ -14,5 +14,6 @@ export default {
 
 <style>
 /*引入公共样式 */
-@import '@/common/css/style.css'; /*每个页面公共css */
+/* @import '@/common/css/style.css'; */
+/*每个页面公共css */
 </style>
