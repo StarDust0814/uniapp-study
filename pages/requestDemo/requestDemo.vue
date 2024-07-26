@@ -1,17 +1,23 @@
 <template>
 	<view class="container">
-		<view class="layout">
-			<view class="box" v-for="(item, index) in pets" :key="item._id">
-				<view class="pic">
-					<image lazy-load :src="item.url" mode="widthFix" @click="onPreview(index)"></image>
+		<view class="menu">
+			<uni-segmented-control :current="1" :values="[11, 22, 33]" @clickItem="onClickItem" styleType="button" activeColor="#2B9939"></uni-segmented-control>
+			<view class="layout">
+				<view class="box" v-for="(item, index) in pets" :key="item._id">
+					<view class="pic">
+						<image lazy-load :src="item.url" mode="widthFix" @click="onPreview(index)"></image>
+					</view>
+					<view class="text">{{ item.content }}</view>
+					<view class="author">—— {{ item.author }}</view>
 				</view>
-				<view class="text">{{ item.content }}</view>
-				<view class="author">—— {{ item.author }}</view>
 			</view>
-		</view>
-		<view class="float">
-			<view class="item" @click="onRefresh">刷新</view>
-			<view class="item" @click="onTop">顶部</view>
+			<view class="float">
+				<view class="item" @click="onRefresh"><uni-icons type="refreshempty"></uni-icons></view>
+				<view class="item" @click="onTop"><uni-icons type="arrow-up"></uni-icons></view>
+			</view>
+			<view class="loadMore">
+				<uni-load-more status="loading"></uni-load-more>
+			</view>
 		</view>
 	</view>
 </template>
@@ -89,6 +95,9 @@ function onTop() {
 
 <style lang="scss" scoped>
 .container {
+	.menu {
+		padding: 50rpx 50rpx 0;
+	}
 	.layout {
 		padding: 50rpx;
 		.box {
@@ -129,6 +138,9 @@ function onTop() {
 			align-items: center;
 			margin-bottom: 20rpx;
 		}
+	}
+	.loadMore {
+		padding-bottom: calc(env(safe-area-inset-bottom) + 52rpx);
 	}
 }
 </style>
