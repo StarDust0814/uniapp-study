@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<view class="menu">
-			<uni-segmented-control :current="0" :values="values" @clickItem="onClickItem" styleType="button" activeColor="#2B9939"></uni-segmented-control>
+			<uni-segmented-control :current="current" :values="values" @clickItem="onClickItem" styleType="button" activeColor="#2B9939"></uni-segmented-control>
 			<view class="layout">
 				<view class="box" v-for="(item, index) in pets" :key="item._id">
 					<view class="pic">
