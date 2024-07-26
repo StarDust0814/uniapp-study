@@ -9,6 +9,10 @@
 				<view class="author">—— {{ item.author }}</view>
 			</view>
 		</view>
+		<view class="float">
+			<view class="item" @click="onRefresh">刷新</view>
+			<view class="item" @click="onTop">顶部</view>
+		</view>
 	</view>
 </template>
 
@@ -43,9 +47,11 @@ function network() {
 			uni.showToast({
 				title: '网络错误',
 				icon: 'none'
-			}).finally(() => {
-				uni.hideLoading();
 			});
+		})
+		.finally(() => {
+			uni.hideLoading();
+			uni.stopPullDownRefresh();
 		});
 }
 network();
@@ -70,7 +76,15 @@ function onPreview(index) {
 	});
 }
 
-// 处理移动端下拉请求新的图片逻辑
+function onRefresh() {
+	uni.startPullDownRefresh();
+}
+function onTop() {
+	uni.pageScrollTo({
+		duration: 100,
+		scrollTop: 0
+	});
+}
 </script>
 
 <style lang="scss" scoped>
@@ -96,6 +110,24 @@ function onPreview(index) {
 				color: #888;
 				font-size: 24rpx;
 			}
+		}
+	}
+	.float {
+		position: fixed;
+		right: 30rpx;
+		bottom: 80rpx;
+		// 设置移动设备中的底部安全区域（如虚拟HOME键等，避免自定义组件与其重叠）
+		padding-bottom: env(safe-area-inset-bottom);
+		.item {
+			width: 90rpx;
+			height: 90rpx;
+			background: rgba(255, 255, 255, 0.9);
+			border-radius: 50%;
+			border: 1px solid #eee;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-bottom: 20rpx;
 		}
 	}
 }
