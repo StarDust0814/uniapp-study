@@ -16,6 +16,7 @@
 const pets = ref([]);
 // URL附加的参数可以填在 data字段
 function network() {
+	uni.showLoading();
 	uni.request({
 		url: 'https://tea.qingnian8.com/tools/petShow',
 		data: {
@@ -24,12 +25,40 @@ function network() {
 		header: {
 			'access-key': '500632'
 		}
-	}).then((res) => {
-		console.log(res);
-		pets.value = res.data.data;
-	});
+	})
+		.then((res) => {
+			uni.hideLoading();
+			if (res.data.errCode === 0) {
+				// 处理成新的数组添加在原数组之后
+				pets.value = [...pets.value, ...res.data.data];
+			} else if (res.data.errCode === 400) {
+				uni.showToast({
+					title: res.data.errMsg,
+					icon: 'none'
+				});
+			}
+		})
+		.catch((err) => {
+			uni.hideLoading();
+			uni.showToast({
+				title: '网络错误',
+				icon: 'none'
+			}).finally(() => {
+				uni.hideLoading();
+			});
+		});
 }
 network();
+
+onReachBottom(() => {
+	network();
+});
+
+onPullDownRefresh(() => {
+	// 重新渲染，清空原本的数据
+	pets.value = [];
+	network();
+});
 
 // 预览图片
 function onPreview(index) {
@@ -40,6 +69,8 @@ function onPreview(index) {
 		current: index
 	});
 }
+
+// 处理移动端下拉请求新的图片逻辑
 </script>
 
 <style lang="scss" scoped>

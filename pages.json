@@ -45,7 +45,8 @@
 		{
 			"path": "pages/requestDemo/requestDemo",
 			"style": {
-				"navigationBarTitleText": "requestDemo"
+				"navigationBarTitleText": "requestDemo",
+				"enablePullDownRefresh": true
 			}
 		}
 	],
